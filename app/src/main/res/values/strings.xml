@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">DmytroBerezhnyi_VDataTestTask</string>
+    <string name="company">Company</string>
+    <string name="collaborator">Collaborator</string>
+    <string name="add_company">Add company</string>
+    <string name="enter_company_name">Enter company name</string>
+    <string name="save">Save</string>
+    <string name="enter_surname">Enter surname</string>
+    <string name="enter_name">Enter name</string>
+    <string name="choose_company">Choose company</string>
+    <string name="new_collaborator">New collaborator</string>
 </resources>

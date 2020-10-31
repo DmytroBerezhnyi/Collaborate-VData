@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/collaboratorFragment">
+
+    <fragment
+        android:id="@+id/collaboratorFragment"
+        android:name="com.example.dmytroberezhnyi_vdatatesttask.fragment.CollaboratorFragment"
+        android:label="@string/collaborator"
+        tools:layout="@layout/collaborator_fragment">
+        <action
+            android:id="@+id/action_collaboratorFragment_to_creationCollaboratorFragment"
+            app:destination="@id/creationCollaboratorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/companyFragment"
+        android:name="com.example.dmytroberezhnyi_vdatatesttask.fragment.CompanyFragment"
+        android:label="@string/company"
+        tools:layout="@layout/company_fragment">
+        <action
+            android:id="@+id/action_companyFragment_to_addCompanyFragment"
+            app:destination="@id/addCompanyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addCompanyFragment"
+        android:name="com.example.dmytroberezhnyi_vdatatesttask.fragment.AddCompanyFragment" />
+    <fragment
+        android:id="@+id/creationCollaboratorFragment"
+        android:name="com.example.dmytroberezhnyi_vdatatesttask.fragment.CreationCollaboratorFragment"
+        android:label="@string/new_collaborator"
+        tools:layout="@layout/creation_collaborator_fragment" />
+</navigation>

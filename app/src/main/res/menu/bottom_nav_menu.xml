@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/collaboratorFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_collab_24"
+        android:title="@string/collaborator" />
+    <item
+        android:id="@+id/companyFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_company_24"
+        android:title="@string/company" />
+</menu>
