@@ -30,5 +30,9 @@
         android:id="@+id/creationCollaboratorFragment"
         android:name="com.example.dmytroberezhnyi_vdatatesttask.fragment.CreationCollaboratorFragment"
         android:label="@string/new_collaborator"
-        tools:layout="@layout/creation_collaborator_fragment" />
+        tools:layout="@layout/creation_collaborator_fragment" >
+        <action
+            android:id="@+id/action_creationCollaboratorFragment_to_collaboratorFragment"
+            app:destination="@id/collaboratorFragment" />
+    </fragment>
 </navigation>

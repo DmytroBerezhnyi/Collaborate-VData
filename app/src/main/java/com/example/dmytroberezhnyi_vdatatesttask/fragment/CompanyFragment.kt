@@ -7,8 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.dmytroberezhnyi_vdatatesttask.MainActivity
 import com.example.dmytroberezhnyi_vdatatesttask.R
+import com.example.dmytroberezhnyi_vdatatesttask.adapters.CompanyRecyclerAdapter
 import com.example.dmytroberezhnyi_vdatatesttask.viewmodels.CompanyViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.company_fragment.*
 
+
+@AndroidEntryPoint
 class CompanyFragment : BaseFragment(), MainActivity.OnAddIconClickedListener {
 
     companion object {
@@ -28,6 +33,7 @@ class CompanyFragment : BaseFragment(), MainActivity.OnAddIconClickedListener {
         super.onViewCreated(view, savedInstanceState)
         requireMainActivity().showToolbarPlusIcon()
         requireMainActivity().setOnIconClickedListener(this)
+        setUpRecycler()
     }
 
     override fun getToolbarTitle(): String {
@@ -36,5 +42,15 @@ class CompanyFragment : BaseFragment(), MainActivity.OnAddIconClickedListener {
 
     override fun onAddButtonClicked() {
         AddCompanyFragment.newInstance().show(activity?.supportFragmentManager!!, "simple_dialog")
+    }
+
+    private fun setUpRecycler() {
+        val adapter = CompanyRecyclerAdapter()
+        rvCompanies.adapter = adapter
+        viewModel.companies.observe(viewLifecycleOwner, {
+            it?.let {
+                adapter.setItems(it)
+            }
+        })
     }
 }

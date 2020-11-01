@@ -1,7 +1,12 @@
 package com.example.dmytroberezhnyi_vdatatesttask.data.entity
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity
 data class Company(
-    val id: Int,
+    @PrimaryKey(autoGenerate = true)
+    var companyId: Long? = null,
     var companyName: String
 ) {
     override fun toString(): String {

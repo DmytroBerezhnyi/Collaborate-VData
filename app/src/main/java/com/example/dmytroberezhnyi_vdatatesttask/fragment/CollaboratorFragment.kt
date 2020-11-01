@@ -8,7 +8,9 @@ import androidx.fragment.app.viewModels
 import com.example.dmytroberezhnyi_vdatatesttask.MainActivity
 import com.example.dmytroberezhnyi_vdatatesttask.R
 import com.example.dmytroberezhnyi_vdatatesttask.viewmodels.CollaboratorViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CollaboratorFragment : BaseFragment(), MainActivity.OnAddIconClickedListener {
 
     companion object {

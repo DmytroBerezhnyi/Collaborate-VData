@@ -1,20 +1,17 @@
 package com.example.dmytroberezhnyi_vdatatesttask.viewmodels
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
+import com.example.dmytroberezhnyi_vdatatesttask.data.entity.Collaborator
 import com.example.dmytroberezhnyi_vdatatesttask.data.entity.Company
+import com.example.dmytroberezhnyi_vdatatesttask.data.repository.CompanyRepository
 
-class CreationCollaboratorViewModel : ViewModel() {
+class CreationCollaboratorViewModel @ViewModelInject constructor(
+    val repository: CompanyRepository
+) : ViewModel() {
+    fun addCollaborator(collaborator: Collaborator, company: Company) {
+        repository.insertCollaboratorWithCompany(collaborator, company)
+    }
 
-    private val mCompanies = listOf(
-        Company(0, "RiotCorp"),
-        Company(1, "RiotCorp2"),
-        Company(2, "RiotCorp3"),
-        Company(3, "RiotCorp4")
-    )
-
-    private val _companies = MutableLiveData(mCompanies)
-
-    val companies: LiveData<List<Company>> = _companies
+    val companies = repository.getCompanies()
 }
