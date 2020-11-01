@@ -11,4 +11,8 @@ class CompanyViewModel @ViewModelInject constructor(
 ) : ViewModel() {
 
     val companies: LiveData<List<Company>> = repository.getCompanies()
+
+    fun deleteCompany(company: Company) {
+        repository.deleteCompany(company)
+    }
 }

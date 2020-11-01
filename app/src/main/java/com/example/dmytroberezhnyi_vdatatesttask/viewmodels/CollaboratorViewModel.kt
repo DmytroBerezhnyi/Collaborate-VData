@@ -7,4 +7,6 @@ import com.example.dmytroberezhnyi_vdatatesttask.data.repository.CompanyReposito
 class CollaboratorViewModel @ViewModelInject constructor(
     val repository: CompanyRepository
 ) : ViewModel() {
+
+    val collaboratorsWithCompanies = repository.getCollaboratorsWithCompanies()
 }

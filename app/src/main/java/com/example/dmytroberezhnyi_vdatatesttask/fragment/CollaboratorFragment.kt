@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.dmytroberezhnyi_vdatatesttask.MainActivity
 import com.example.dmytroberezhnyi_vdatatesttask.R
+import com.example.dmytroberezhnyi_vdatatesttask.adapters.CollaboratorRecyclerAdapter
 import com.example.dmytroberezhnyi_vdatatesttask.viewmodels.CollaboratorViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.collaborator_fragment.*
 
 @AndroidEntryPoint
 class CollaboratorFragment : BaseFragment(), MainActivity.OnAddIconClickedListener {
@@ -30,6 +32,15 @@ class CollaboratorFragment : BaseFragment(), MainActivity.OnAddIconClickedListen
         super.onViewCreated(view, savedInstanceState)
         requireMainActivity().showToolbarPlusIcon()
         requireMainActivity().setOnIconClickedListener(this)
+
+        val adapter = CollaboratorRecyclerAdapter()
+        rvCollaborators.adapter = adapter
+
+        viewModel.collaboratorsWithCompanies.observe(viewLifecycleOwner, {
+            it?.let {
+                adapter.setItems(it)
+            }
+        })
     }
 
     override fun getToolbarTitle(): String {

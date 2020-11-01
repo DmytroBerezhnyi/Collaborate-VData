@@ -4,17 +4,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import com.example.dmytroberezhnyi_vdatatesttask.MainActivity
 import com.example.dmytroberezhnyi_vdatatesttask.R
 import com.example.dmytroberezhnyi_vdatatesttask.adapters.CompanyRecyclerAdapter
+import com.example.dmytroberezhnyi_vdatatesttask.adapters.CompanyViewHolder.CompanySize
+import com.example.dmytroberezhnyi_vdatatesttask.adapters.CompanyViewHolder.OnCompanyItemClickedListener
+import com.example.dmytroberezhnyi_vdatatesttask.data.entity.Company
 import com.example.dmytroberezhnyi_vdatatesttask.viewmodels.CompanyViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.company_fragment.*
 
 
 @AndroidEntryPoint
-class CompanyFragment : BaseFragment(), MainActivity.OnAddIconClickedListener {
+class CompanyFragment : BaseFragment(), MainActivity.OnAddIconClickedListener,
+    OnCompanyItemClickedListener {
 
     companion object {
         fun newInstance() = CompanyFragment()
@@ -44,8 +49,27 @@ class CompanyFragment : BaseFragment(), MainActivity.OnAddIconClickedListener {
         AddCompanyFragment.newInstance().show(activity?.supportFragmentManager!!, "simple_dialog")
     }
 
+    override fun onCompanyItemClicked(company: Company) {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
+
+        builder.setTitle("Do you want to delete ${company.companyName}")
+        builder.setMessage("Are you sure?")
+
+        builder.setPositiveButton("YES") { dialog, which ->
+            viewModel.deleteCompany(company)
+            dialog.dismiss()
+        }
+
+        builder.setNegativeButton("NO") { dialog, which ->
+            dialog.dismiss()
+        }
+
+        val alert: AlertDialog = builder.create()
+        alert.show()
+    }
+
     private fun setUpRecycler() {
-        val adapter = CompanyRecyclerAdapter()
+        val adapter = CompanyRecyclerAdapter(CompanySize.NORMAL, this)
         rvCompanies.adapter = adapter
         viewModel.companies.observe(viewLifecycleOwner, {
             it?.let {
