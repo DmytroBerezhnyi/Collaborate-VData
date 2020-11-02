@@ -18,21 +18,25 @@
         android:id="@+id/companyFragment"
         android:name="com.example.dmytroberezhnyi_vdatatesttask.fragment.CompanyFragment"
         android:label="@string/company"
-        tools:layout="@layout/company_fragment">
-        <action
-            android:id="@+id/action_companyFragment_to_addCompanyFragment"
-            app:destination="@id/addCompanyFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/addCompanyFragment"
-        android:name="com.example.dmytroberezhnyi_vdatatesttask.fragment.AddCompanyFragment" />
+        tools:layout="@layout/company_fragment" />
     <fragment
         android:id="@+id/creationCollaboratorFragment"
         android:name="com.example.dmytroberezhnyi_vdatatesttask.fragment.CreationCollaboratorFragment"
         android:label="@string/new_collaborator"
-        tools:layout="@layout/creation_collaborator_fragment" >
+        tools:layout="@layout/creation_collaborator_fragment">
         <action
             android:id="@+id/action_creationCollaboratorFragment_to_collaboratorFragment"
             app:destination="@id/collaboratorFragment" />
+        <action
+            android:id="@+id/action_creationCollaboratorFragment_to_pictureGalleryFragment"
+            app:destination="@id/pictureGalleryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pictureGalleryFragment"
+        android:name="com.example.dmytroberezhnyi_vdatatesttask.fragment.PictureGalleryFragment"
+        android:label="@string/picture_gallery" >
+        <action
+            android:id="@+id/action_pictureGalleryFragment_to_creationCollaboratorFragment"
+            app:destination="@id/creationCollaboratorFragment" />
     </fragment>
 </navigation>

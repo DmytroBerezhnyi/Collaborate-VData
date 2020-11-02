@@ -43,11 +43,7 @@ class CollaboratorFragment : BaseFragment(), MainActivity.OnAddIconClickedListen
         })
     }
 
-    override fun getToolbarTitle(): String {
-        return getString(R.string.collaborator)
-    }
-
     override fun onAddButtonClicked() {
-        requireMainActivity().navController.navigate(R.id.action_collaboratorFragment_to_creationCollaboratorFragment)
+        navigate(R.id.action_collaboratorFragment_to_creationCollaboratorFragment)
     }
 }

@@ -9,4 +9,5 @@
     <string name="enter_name">Enter name</string>
     <string name="choose_company">Choose company</string>
     <string name="new_collaborator">New collaborator</string>
+    <string name="picture_gallery">Picture gallery</string>
 </resources>

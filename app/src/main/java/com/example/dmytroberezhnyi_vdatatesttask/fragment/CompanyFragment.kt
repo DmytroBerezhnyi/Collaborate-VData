@@ -10,7 +10,7 @@ import com.example.dmytroberezhnyi_vdatatesttask.MainActivity
 import com.example.dmytroberezhnyi_vdatatesttask.R
 import com.example.dmytroberezhnyi_vdatatesttask.adapters.CompanyRecyclerAdapter
 import com.example.dmytroberezhnyi_vdatatesttask.adapters.CompanyViewHolder.CompanySize
-import com.example.dmytroberezhnyi_vdatatesttask.adapters.CompanyViewHolder.OnCompanyItemClickedListener
+import com.example.dmytroberezhnyi_vdatatesttask.adapters.CompanyViewHolder.OnCompanyItemLongPressedListener
 import com.example.dmytroberezhnyi_vdatatesttask.data.entity.Company
 import com.example.dmytroberezhnyi_vdatatesttask.viewmodels.CompanyViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.company_fragment.*
 
 @AndroidEntryPoint
 class CompanyFragment : BaseFragment(), MainActivity.OnAddIconClickedListener,
-    OnCompanyItemClickedListener {
+    OnCompanyItemLongPressedListener {
 
     companion object {
         fun newInstance() = CompanyFragment()
@@ -41,15 +41,11 @@ class CompanyFragment : BaseFragment(), MainActivity.OnAddIconClickedListener,
         setUpRecycler()
     }
 
-    override fun getToolbarTitle(): String {
-        return getString(R.string.company)
-    }
-
     override fun onAddButtonClicked() {
         AddCompanyFragment.newInstance().show(activity?.supportFragmentManager!!, "simple_dialog")
     }
 
-    override fun onCompanyItemClicked(company: Company) {
+    override fun onCompanyItemLongPressed(company: Company) {
         val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
 
         builder.setTitle("Do you want to delete ${company.companyName}")

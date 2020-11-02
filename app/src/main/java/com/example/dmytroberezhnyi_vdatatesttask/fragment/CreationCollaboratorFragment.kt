@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import androidx.fragment.app.viewModels
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.dmytroberezhnyi_vdatatesttask.R
 import com.example.dmytroberezhnyi_vdatatesttask.adapters.CompanySpinnerAdapter
 import com.example.dmytroberezhnyi_vdatatesttask.data.entity.Collaborator
@@ -19,6 +22,9 @@ import kotlinx.android.synthetic.main.creation_collaborator_fragment.*
 class CreationCollaboratorFragment : BaseFragment() {
 
     companion object {
+
+        val urlKey = "pictureUrl"
+
         fun newInstance() = CreationCollaboratorFragment()
     }
 
@@ -33,16 +39,11 @@ class CreationCollaboratorFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requireMainActivity().hideToolbarPlusIcon()
         viewModel.companies.observe(viewLifecycleOwner, {
             it?.let {
                 setupViews(it)
             }
         })
-    }
-
-    override fun getToolbarTitle(): String {
-        return getString(R.string.new_collaborator)
     }
 
     private fun setupViews(companies: List<Company>) {
@@ -56,6 +57,13 @@ class CreationCollaboratorFragment : BaseFragment() {
             }
         tvWithSpinnerBehavior.setAdapter(adapter)
 
+        val pictureUrl: String? = arguments?.getString(urlKey)
+
+        Glide.with(requireView())
+            .load(pictureUrl ?: R.drawable.ic_empty_avatar)
+            .transform(CenterCrop(), RoundedCorners(15))
+            .into(ivCollaboratorPhoto)
+
         btnSave.setOnClickListener {
             val name = etName.text.toString()
             val surname = etSurname.text.toString()
@@ -66,18 +74,21 @@ class CreationCollaboratorFragment : BaseFragment() {
                 showSnackbar("Name can't be empty")
             } else if (TextUtils.isEmpty(surname)) {
                 showSnackbar("Surname can't be empty")
+            } else if (pictureUrl == null) {
+                showSnackbar("Pick picture first :)")
             } else {
                 val collaborator = Collaborator(
                     name = name,
                     surname = surname,
-                    avatarUrl = "https://undark.org/wp-content/uploads/2020/02/GettyImages-1199242002-1-scaled.jpg"
+                    avatarUrl = pictureUrl
                 )
                 viewModel.addCollaborator(collaborator, company!!)
-
-                requireMainActivity()
-                    .navController
-                    .navigate(R.id.action_creationCollaboratorFragment_to_collaboratorFragment)
+                navigate(R.id.action_creationCollaboratorFragment_to_collaboratorFragment)
             }
+        }
+
+        ivCollaboratorPhoto.setOnClickListener {
+            navigate(R.id.action_creationCollaboratorFragment_to_pictureGalleryFragment)
         }
     }
 }

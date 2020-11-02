@@ -7,14 +7,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dmytroberezhnyi_vdatatesttask.R
 import com.example.dmytroberezhnyi_vdatatesttask.adapters.CompanyViewHolder.CompanySize
-import com.example.dmytroberezhnyi_vdatatesttask.adapters.CompanyViewHolder.OnCompanyItemClickedListener
+import com.example.dmytroberezhnyi_vdatatesttask.adapters.CompanyViewHolder.OnCompanyItemLongPressedListener
 import com.example.dmytroberezhnyi_vdatatesttask.data.entity.Company
 import kotlinx.android.synthetic.main.company_item.view.*
 import java.util.*
 
 class CompanyRecyclerAdapter(
     private val companySize: CompanySize,
-    private val listener: OnCompanyItemClickedListener? = null
+    private val listener: OnCompanyItemLongPressedListener? = null
 ) : RecyclerView.Adapter<CompanyViewHolder>() {
 
     private val items = ArrayList<Company>()
@@ -41,13 +41,13 @@ class CompanyRecyclerAdapter(
 
 class CompanyViewHolder(
     itemView: View, private val companySize: CompanySize,
-    listener: OnCompanyItemClickedListener?
+    listener: OnCompanyItemLongPressedListener?
 ) : RecyclerView.ViewHolder(itemView) {
 
     init {
         listener?.let {
             itemView.setOnLongClickListener {
-                listener.onCompanyItemClicked(company)
+                listener.onCompanyItemLongPressed(company)
                 true
             }
         }
@@ -74,8 +74,8 @@ class CompanyViewHolder(
             ).toInt()
     }
 
-    interface OnCompanyItemClickedListener {
-        fun onCompanyItemClicked(company: Company)
+    interface OnCompanyItemLongPressedListener {
+        fun onCompanyItemLongPressed(company: Company)
     }
 
     enum class CompanySize {
