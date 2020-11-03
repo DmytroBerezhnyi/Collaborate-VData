@@ -2,11 +2,10 @@ package com.example.dmytroberezhnyi_vdatatesttask.fragment
 
 import android.os.Bundle
 import android.view.View
-import androidx.annotation.IdRes
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.example.dmytroberezhnyi_vdatatesttask.MainActivity
 import com.google.android.material.snackbar.Snackbar
-import timber.log.Timber
 
 abstract class BaseFragment : Fragment() {
 
@@ -26,7 +25,28 @@ abstract class BaseFragment : Fragment() {
         return requireActivity() as MainActivity
     }
 
-    protected fun navigate(@IdRes action : Int, args : Bundle? = null) {
-        requireMainActivity().navController.navigate(action, args)
+    protected fun showDialog(
+        title: String,
+        message: String,
+        actionYes: () -> Unit,
+        actionNo: (() -> Unit)? = null
+    ) {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
+
+        builder.setTitle(title)
+        builder.setMessage(message)
+
+        builder.setPositiveButton("YES") { dialog, _ ->
+            actionYes.invoke()
+            dialog.dismiss()
+        }
+
+        builder.setNegativeButton("NO") { dialog, _ ->
+            actionNo?.invoke()
+            dialog.dismiss()
+        }
+
+        val alert: AlertDialog = builder.create()
+        alert.show()
     }
 }

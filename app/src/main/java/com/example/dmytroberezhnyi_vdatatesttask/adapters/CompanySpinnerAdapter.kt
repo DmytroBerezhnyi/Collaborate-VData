@@ -12,6 +12,11 @@ class CompanySpinnerAdapter(
     val items: List<Company>
 ) : ArrayAdapter<Company>(mContext, resource, items) {
 
+    fun setItems(items: List<Company>) {
+        clear()
+        addAll(items)
+    }
+
     override fun getFilter(): Filter {
         return DisableFilter()
     }

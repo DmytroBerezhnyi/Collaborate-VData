@@ -10,4 +10,14 @@
     <string name="choose_company">Choose company</string>
     <string name="new_collaborator">New collaborator</string>
     <string name="picture_gallery">Picture gallery</string>
+    <string name="company_details">Company details</string>
+    <string name="total_collaborators">Total collaborators:</string>
+    <string name="currently_working">Currently working:</string>
+    <string name="not_woking">Not working anymore:</string>
+    <string name="edit_collaborator">Edit collaborator</string>
+    <string name="working_in_these_companies">Working in these companies:</string>
+    <string name="worked_in_these_companies_before">Worked in these companies before:</string>
+    <string name="emty_surname">Surname can\'t be empty :)</string>
+    <string name="empty_name">Name can\'t be empty :)</string>
+    <string name="pick_picture">Pick picture first :)</string>
 </resources>

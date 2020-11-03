@@ -7,13 +7,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.example.dmytroberezhnyi_vdatatesttask.R
+import com.example.dmytroberezhnyi_vdatatesttask.adapters.CollaboratorViewHolder.CollaboratorWidthSize
 import com.example.dmytroberezhnyi_vdatatesttask.adapters.CompanyViewHolder.CompanySize
+import com.example.dmytroberezhnyi_vdatatesttask.data.entity.Collaborator
 import com.example.dmytroberezhnyi_vdatatesttask.data.entity.CollaboratorWithCompanies
 import kotlinx.android.synthetic.main.collaborator_item.view.*
 import kotlinx.android.synthetic.main.company_fragment.view.rvCompanies
 import java.util.*
 
-class CollaboratorRecyclerAdapter : RecyclerView.Adapter<CollaboratorViewHolder>() {
+class CollaboratorRecyclerAdapter(
+    private val collaboratorSize: CollaboratorWidthSize,
+    private val listener: CollaboratorViewHolder.OnCollaboratorItemClickedListener? = null
+) :
+    RecyclerView.Adapter<CollaboratorViewHolder>() {
 
     private val items = ArrayList<CollaboratorWithCompanies>()
 
@@ -26,7 +32,7 @@ class CollaboratorRecyclerAdapter : RecyclerView.Adapter<CollaboratorViewHolder>
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CollaboratorViewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.collaborator_item, parent, false)
-        return CollaboratorViewHolder(view)
+        return CollaboratorViewHolder(view, collaboratorSize, listener)
     }
 
     override fun onBindViewHolder(holder: CollaboratorViewHolder, position: Int) {
@@ -38,13 +44,34 @@ class CollaboratorRecyclerAdapter : RecyclerView.Adapter<CollaboratorViewHolder>
     }
 }
 
-class CollaboratorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class CollaboratorViewHolder(
+    itemView: View,
+    private val collaboratorSize: CollaboratorWidthSize,
+    listener: OnCollaboratorItemClickedListener?
+) : RecyclerView.ViewHolder(itemView) {
+
+    lateinit var collaborator: Collaborator
+
+    init {
+        itemView.setOnClickListener {
+            listener?.let {
+                listener.onCollaboratorClicked(collaborator)
+            }
+        }
+    }
 
     fun bind(collaboratorWithCompanies: CollaboratorWithCompanies) {
+        this.collaborator = collaboratorWithCompanies.collaborator
+        if (collaboratorSize == CollaboratorWidthSize.MUCH_PARENT) {
+            itemView.cvCollaborator.layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT
+        } else if (collaboratorSize == CollaboratorWidthSize.WRAP_CONTENT) {
+            itemView.cvCollaborator.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
+        }
         setUpAdapter(collaboratorWithCompanies)
         val collaborator = collaboratorWithCompanies.collaborator
         val name = "${collaborator.name} ${collaborator.surname}"
         itemView.tvNameAndSurname.text = name
+
         Glide.with(itemView)
             .load(collaborator.avatarUrl)
             .transform(CircleCrop())
@@ -55,5 +82,14 @@ class CollaboratorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
         val adapter = CompanyRecyclerAdapter(CompanySize.SMALL, null)
         itemView.rvCompanies.adapter = adapter
         adapter.setItems(collaboratorWithCompanies.companies)
+    }
+
+    interface OnCollaboratorItemClickedListener {
+        fun onCollaboratorClicked(collaborator: Collaborator)
+    }
+
+    enum class CollaboratorWidthSize {
+        WRAP_CONTENT,
+        MUCH_PARENT
     }
 }

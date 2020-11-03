@@ -4,13 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AlertDialog
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.dmytroberezhnyi_vdatatesttask.MainActivity
 import com.example.dmytroberezhnyi_vdatatesttask.R
 import com.example.dmytroberezhnyi_vdatatesttask.adapters.CompanyRecyclerAdapter
 import com.example.dmytroberezhnyi_vdatatesttask.adapters.CompanyViewHolder.CompanySize
-import com.example.dmytroberezhnyi_vdatatesttask.adapters.CompanyViewHolder.OnCompanyItemLongPressedListener
+import com.example.dmytroberezhnyi_vdatatesttask.adapters.CompanyViewHolder.OnCompanyItemPressedListener
 import com.example.dmytroberezhnyi_vdatatesttask.data.entity.Company
 import com.example.dmytroberezhnyi_vdatatesttask.viewmodels.CompanyViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,7 +20,7 @@ import kotlinx.android.synthetic.main.company_fragment.*
 
 @AndroidEntryPoint
 class CompanyFragment : BaseFragment(), MainActivity.OnAddIconClickedListener,
-    OnCompanyItemLongPressedListener {
+    OnCompanyItemPressedListener {
 
     companion object {
         fun newInstance() = CompanyFragment()
@@ -46,22 +47,15 @@ class CompanyFragment : BaseFragment(), MainActivity.OnAddIconClickedListener,
     }
 
     override fun onCompanyItemLongPressed(company: Company) {
-        val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
+        val title = "Do you want to delete ${company.companyName}"
+        val message = "Are you sure?"
+        val actionYes: () -> Unit = { viewModel.deleteCompany(company) }
+        showDialog(title, message, actionYes)
+    }
 
-        builder.setTitle("Do you want to delete ${company.companyName}")
-        builder.setMessage("Are you sure?")
-
-        builder.setPositiveButton("YES") { dialog, which ->
-            viewModel.deleteCompany(company)
-            dialog.dismiss()
-        }
-
-        builder.setNegativeButton("NO") { dialog, which ->
-            dialog.dismiss()
-        }
-
-        val alert: AlertDialog = builder.create()
-        alert.show()
+    override fun onCompanyItemClicked(company: Company) {
+        val bundle = bundleOf(Pair(CompanyDetailsFragment.companyKey, company))
+        findNavController().navigate(R.id.action_companyFragment_to_companyDetailsFragment, bundle)
     }
 
     private fun setUpRecycler() {

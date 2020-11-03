@@ -35,6 +35,18 @@ class CompanyRepository @Inject constructor(
         }
     }
 
+    // TODO: 03.11.20 working! but reactive data changing is lost.. fix it
+    //  suspend fun getCollaboratorsWithCompanies(): List<CollaboratorWithCompanies>
+    /*fun getCollaboratorsWithCompanies() = liveData {
+        val collaboratorWithCompanies = localCollaboratorDataSource.getCollaboratorsWithCompanies()
+        collaboratorWithCompanies.forEach {
+            val currentCompanies =
+                localCompanyDataSource.getCompaniesSus(it.collaborator.collaboratorId!!, true)
+            it.companies = currentCompanies
+        }
+        emitSource(MutableLiveData(collaboratorWithCompanies))
+    }*/
+
     fun getCollaboratorsWithCompanies(): LiveData<List<CollaboratorWithCompanies>> {
         return localCollaboratorDataSource.getCollaboratorsWithCompanies()
     }
@@ -43,16 +55,45 @@ class CompanyRepository @Inject constructor(
         CoroutineScope(Dispatchers.IO).launch {
             val collaboratorId = localCollaboratorDataSource.insert(collaborator)
             val companyCollaboratorContract =
-                CompanyCollaboratorContract(company.companyId!!, collaboratorId)
+                CompanyCollaboratorContract(company.companyId!!, collaboratorId, true)
             localCompanyCollabDataSource.insert(companyCollaboratorContract)
         }
     }
 
-    fun addCompanyForCollaborator(collaborator: Collaborator, company: Company) {
+    fun getCompanyWithCollaborators(
+        companyId: Long,
+        isWorking: Boolean
+    ): LiveData<List<Collaborator>> {
+        return localCollaboratorDataSource.getCollaboratorsCompany(companyId, isWorking)
+    }
+
+    fun getCollaboratorsTotalCount(companyId: Long): LiveData<Int> {
+        return localCollaboratorDataSource.getCollaboratorsTotalCount(companyId)
+    }
+
+    fun getCompanies(collaboratorId: Long, isWorking: Boolean): LiveData<List<Company>> {
+        return localCompanyDataSource.getCompanies(collaboratorId, isWorking)
+    }
+
+    fun addCompanyForCollaborator(collaboratorId: Long, companyId: Long) {
         CoroutineScope(Dispatchers.IO).launch {
             val companyCollaboratorContract =
-                CompanyCollaboratorContract(company.companyId!!, collaborator.collaboratorId!!)
+                CompanyCollaboratorContract(companyId, collaboratorId, true)
             localCompanyCollabDataSource.insert(companyCollaboratorContract)
+        }
+    }
+
+    fun fireCollaboratorFromCompany(collaboratorId: Long, companyId: Long) {
+        CoroutineScope(Dispatchers.IO).launch {
+            val companyCollaboratorContract =
+                CompanyCollaboratorContract(companyId, collaboratorId, false)
+            localCompanyCollabDataSource.insert(companyCollaboratorContract)
+        }
+    }
+
+    fun updateCollaborator(collaborator: Collaborator) {
+        CoroutineScope(Dispatchers.IO).launch {
+            localCollaboratorDataSource.update(collaborator)
         }
     }
 }

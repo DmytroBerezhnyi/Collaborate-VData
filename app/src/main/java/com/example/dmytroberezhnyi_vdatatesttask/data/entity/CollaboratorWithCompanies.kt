@@ -8,7 +8,8 @@ import androidx.room.Relation
 @Entity(primaryKeys = ["companyId", "collaboratorId"])
 data class CompanyCollaboratorContract(
     val companyId: Long,
-    val collaboratorId: Long
+    val collaboratorId: Long,
+    val isWorking: Boolean
 )
 
 data class CollaboratorWithCompanies(
@@ -18,7 +19,7 @@ data class CollaboratorWithCompanies(
         entityColumn = "companyId",
         associateBy = Junction(CompanyCollaboratorContract::class)
     )
-    val companies: List<Company>
+    var companies: List<Company>
 )
 
 data class CompanyWithCollaborators(
@@ -30,3 +31,16 @@ data class CompanyWithCollaborators(
     )
     val collaborators: List<Collaborator>
 )
+
+fun toCollaboratorsWithCompany(
+    collaborators: List<Collaborator>,
+    company: Company
+): List<CollaboratorWithCompanies> {
+    val collaboratorsWithCompanies = mutableListOf<CollaboratorWithCompanies>()
+
+    collaborators.forEach {
+        collaboratorsWithCompanies.add(CollaboratorWithCompanies(it, listOf(company)))
+    }
+
+    return collaboratorsWithCompanies
+}
