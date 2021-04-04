@@ -14,14 +14,12 @@ import com.example.dmytroberezhnyi_vdatatesttask.R
 import com.example.dmytroberezhnyi_vdatatesttask.data.entity.Company
 import com.example.dmytroberezhnyi_vdatatesttask.presentation.base.architecture.BaseFragment
 import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.activity.MainActivity
-import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.adapter.CompanyViewHolder.OnCompanyItemPressedListener
 import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.fragent.add_company.AddCompanyFragment
 import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.fragent.company_details.CompanyDetailsFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CompanyFragment : BaseFragment(), MainActivity.OnAddIconClickedListener,
-    OnCompanyItemPressedListener {
+class CompanyFragment : BaseFragment(), MainActivity.OnAddIconClickedListener {
 
     companion object {
         fun newInstance() = CompanyFragment()
@@ -34,6 +32,13 @@ class CompanyFragment : BaseFragment(), MainActivity.OnAddIconClickedListener,
         findNavController().navigate(R.id.action_companyFragment_to_companyDetailsFragment, bundle)
     }
 
+    private val onCompanyItemLongPressed: (company: Company) -> Unit = {
+        val title = "Do you want to delete ${it.companyName}"
+        val message = "Are you sure?"
+        val actionYes: () -> Unit = { viewModel.deleteCompany(it) }
+        showDialog(title, message, actionYes)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,7 +48,8 @@ class CompanyFragment : BaseFragment(), MainActivity.OnAddIconClickedListener,
                 MaterialTheme {
                     Companies(
                         companyList = viewModel.companies.observeAsState(),
-                        onCompanyItemClicked
+                        onCompanyItemClicked,
+                        onCompanyItemLongPressed
                     )
                 }
             }
@@ -60,18 +66,6 @@ class CompanyFragment : BaseFragment(), MainActivity.OnAddIconClickedListener,
 
     override fun onAddButtonClicked() {
         AddCompanyFragment.newInstance().show(activity?.supportFragmentManager!!, "simple_dialog")
-    }
-
-    override fun onCompanyItemLongPressed(company: Company) {
-        val title = "Do you want to delete ${company.companyName}"
-        val message = "Are you sure?"
-        val actionYes: () -> Unit = { viewModel.deleteCompany(company) }
-        showDialog(title, message, actionYes)
-    }
-
-    override fun onCompanyItemClicked(company: Company) {
-        val bundle = bundleOf(Pair(CompanyDetailsFragment.companyKey, company))
-        findNavController().navigate(R.id.action_companyFragment_to_companyDetailsFragment, bundle)
     }
 
     private fun setUpRecycler() {
