@@ -1,10 +1,12 @@
 package com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.fragent.collaborator
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import com.example.dmytroberezhnyi_vdatatesttask.data.repository.CompanyRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class CollaboratorViewModel @ViewModelInject constructor(
+@HiltViewModel
+class CollaboratorViewModel @Inject constructor(
     val repository: CompanyRepository
 ) : ViewModel() {
 
