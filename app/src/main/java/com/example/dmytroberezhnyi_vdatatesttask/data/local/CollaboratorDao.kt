@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.dmytroberezhnyi_vdatatesttask.data.entity.Collaborator
 import com.example.dmytroberezhnyi_vdatatesttask.data.entity.CollaboratorWithCompanies
-import com.example.dmytroberezhnyi_vdatatesttask.data.entity.Company
 
 @Dao
 interface CollaboratorDao {
