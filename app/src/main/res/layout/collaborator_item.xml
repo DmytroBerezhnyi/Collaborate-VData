@@ -21,6 +21,7 @@
             android:id="@+id/ivPhoto"
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:contentDescription="@string/collaborator_photo"
             android:layout_gravity="center"
             android:layout_marginTop="8dp"
             app:srcCompat="@drawable/ic_empty_avatar" />
@@ -47,6 +48,5 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:itemCount="3"
             tools:listitem="@layout/company_item" />
-
     </LinearLayout>
 </androidx.cardview.widget.CardView>

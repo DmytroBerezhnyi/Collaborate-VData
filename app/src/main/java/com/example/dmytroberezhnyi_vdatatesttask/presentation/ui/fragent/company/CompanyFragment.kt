@@ -19,7 +19,6 @@ import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.fragent.company
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.company_fragment.*
 
-
 @AndroidEntryPoint
 class CompanyFragment : BaseFragment(), MainActivity.OnAddIconClickedListener,
     OnCompanyItemPressedListener {
