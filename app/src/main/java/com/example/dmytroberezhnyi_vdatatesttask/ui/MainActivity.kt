@@ -1,4 +1,4 @@
-package com.example.dmytroberezhnyi_vdatatesttask
+package com.example.dmytroberezhnyi_vdatatesttask.ui
 
 import android.os.Bundle
 import android.view.MenuItem
@@ -8,6 +8,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
+import com.example.dmytroberezhnyi_vdatatesttask.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 

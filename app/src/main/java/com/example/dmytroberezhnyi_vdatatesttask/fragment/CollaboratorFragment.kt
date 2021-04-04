@@ -7,13 +7,13 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.dmytroberezhnyi_vdatatesttask.MainActivity.OnAddIconClickedListener
 import com.example.dmytroberezhnyi_vdatatesttask.R
 import com.example.dmytroberezhnyi_vdatatesttask.adapters.CollaboratorRecyclerAdapter
 import com.example.dmytroberezhnyi_vdatatesttask.adapters.CollaboratorViewHolder.CollaboratorWidthSize
 import com.example.dmytroberezhnyi_vdatatesttask.adapters.CollaboratorViewHolder.OnCollaboratorItemClickedListener
 import com.example.dmytroberezhnyi_vdatatesttask.data.entity.Collaborator
 import com.example.dmytroberezhnyi_vdatatesttask.fragment.EditCollaboratorFragment.Companion.collaboratorKey
+import com.example.dmytroberezhnyi_vdatatesttask.ui.MainActivity.OnAddIconClickedListener
 import com.example.dmytroberezhnyi_vdatatesttask.viewmodels.CollaboratorViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.collaborator_fragment.*

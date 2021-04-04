@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import com.example.dmytroberezhnyi_vdatatesttask.MainActivity
+import com.example.dmytroberezhnyi_vdatatesttask.ui.MainActivity
 import com.google.android.material.snackbar.Snackbar
 
 abstract class BaseFragment : Fragment() {
