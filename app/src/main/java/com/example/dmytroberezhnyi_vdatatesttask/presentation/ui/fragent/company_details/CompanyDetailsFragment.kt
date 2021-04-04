@@ -1,17 +1,16 @@
-package com.example.dmytroberezhnyi_vdatatesttask.fragment
+package com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.fragent.company_details
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.dmytroberezhnyi_vdatatesttask.R
-import com.example.dmytroberezhnyi_vdatatesttask.adapters.CollaboratorRecyclerAdapter
-import com.example.dmytroberezhnyi_vdatatesttask.adapters.CollaboratorViewHolder.CollaboratorWidthSize
 import com.example.dmytroberezhnyi_vdatatesttask.data.entity.Company
 import com.example.dmytroberezhnyi_vdatatesttask.data.entity.toCollaboratorsWithCompany
-import com.example.dmytroberezhnyi_vdatatesttask.viewmodels.CompanyDetailsViewModel
+import com.example.dmytroberezhnyi_vdatatesttask.presentation.base.architecture.BaseFragment
+import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.adapter.CollaboratorRecyclerAdapter
+import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.adapter.CollaboratorViewHolder.CollaboratorWidthSize
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.company_detalils_fragment.*
 

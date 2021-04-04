@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/collaboratorFragment"
-        android:name="com.example.dmytroberezhnyi_vdatatesttask.fragment.CollaboratorFragment"
+        android:name="com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.fragent.collaborator.CollaboratorFragment"
         android:label="@string/collaborator"
         tools:layout="@layout/collaborator_fragment">
         <action
@@ -19,16 +19,16 @@
     </fragment>
     <fragment
         android:id="@+id/companyFragment"
-        android:name="com.example.dmytroberezhnyi_vdatatesttask.fragment.CompanyFragment"
+        android:name="com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.fragent.company.CompanyFragment"
         android:label="@string/company"
-        tools:layout="@layout/company_fragment" >
+        tools:layout="@layout/company_fragment">
         <action
             android:id="@+id/action_companyFragment_to_companyDetailsFragment"
             app:destination="@id/companyDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/creationCollaboratorFragment"
-        android:name="com.example.dmytroberezhnyi_vdatatesttask.fragment.CreationCollaboratorFragment"
+        android:name="com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.fragent.creation_collaborator.CreationCollaboratorFragment"
         android:label="@string/new_collaborator"
         tools:layout="@layout/creation_collaborator_fragment">
         <action
@@ -40,18 +40,19 @@
     </fragment>
     <fragment
         android:id="@+id/pictureGalleryFragment"
-        android:name="com.example.dmytroberezhnyi_vdatatesttask.fragment.PictureGalleryFragment"
-        android:label="@string/picture_gallery" />
+        android:name="com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.fragent.picture_gallery.PictureGalleryFragment"
+        android:label="@string/picture_gallery"
+        tools:layout="@layout/picture_gallery_fragment" />
     <fragment
         android:id="@+id/companyDetailsFragment"
-        android:name="com.example.dmytroberezhnyi_vdatatesttask.fragment.CompanyDetailsFragment"
+        android:name="com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.fragent.company_details.CompanyDetailsFragment"
         android:label="@string/company_details"
         tools:layout="@layout/company_detalils_fragment" />
     <fragment
         android:id="@+id/editCollaboratorFragment"
-        android:name="com.example.dmytroberezhnyi_vdatatesttask.fragment.EditCollaboratorFragment"
+        android:name="com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.fragent.edit_collaborator.EditCollaboratorFragment"
         android:label="@string/edit_collaborator"
-        tools:layout="@layout/edit_collaborator_fragment" >
+        tools:layout="@layout/edit_collaborator_fragment">
         <action
             android:id="@+id/action_editCollaboratorFragment_to_collaboratorFragment"
             app:destination="@id/collaboratorFragment" />

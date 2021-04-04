@@ -1,4 +1,4 @@
-package com.example.dmytroberezhnyi_vdatatesttask.fragment
+package com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.fragent.edit_collaborator
 
 import android.os.Bundle
 import android.text.TextUtils
@@ -13,20 +13,18 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.dmytroberezhnyi_vdatatesttask.R
-import com.example.dmytroberezhnyi_vdatatesttask.adapters.CompanyRecyclerAdapter
-import com.example.dmytroberezhnyi_vdatatesttask.adapters.CompanySpinnerAdapter
-import com.example.dmytroberezhnyi_vdatatesttask.adapters.CompanyViewHolder.CompanySize
-import com.example.dmytroberezhnyi_vdatatesttask.adapters.CompanyViewHolder.OnCompanyItemPressedListener
 import com.example.dmytroberezhnyi_vdatatesttask.data.entity.Collaborator
 import com.example.dmytroberezhnyi_vdatatesttask.data.entity.Company
-import com.example.dmytroberezhnyi_vdatatesttask.viewmodels.EditCollaboratorViewModel
+import com.example.dmytroberezhnyi_vdatatesttask.presentation.base.architecture.BaseFragment
+import com.example.dmytroberezhnyi_vdatatesttask.presentation.base.extension.getText
+import com.example.dmytroberezhnyi_vdatatesttask.presentation.base.extension.setText
+import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.adapter.CompanyRecyclerAdapter
+import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.adapter.CompanySpinnerAdapter
+import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.adapter.CompanyViewHolder.CompanySize
+import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.adapter.CompanyViewHolder.OnCompanyItemPressedListener
+import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.fragent.picture_gallery.PictureGalleryFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.creation_collaborator_fragment.*
 import kotlinx.android.synthetic.main.edit_collaborator_fragment.*
-import kotlinx.android.synthetic.main.edit_collaborator_fragment.btnSave
-import kotlinx.android.synthetic.main.edit_collaborator_fragment.etName
-import kotlinx.android.synthetic.main.edit_collaborator_fragment.etSurname
-import kotlinx.android.synthetic.main.edit_collaborator_fragment.ivCollaboratorPhoto
 import java.util.*
 
 @AndroidEntryPoint
@@ -65,8 +63,8 @@ class EditCollaboratorFragment : BaseFragment(), OnCompanyItemPressedListener {
             R.layout.company_title_item,
             ArrayList<Company>()
         )
-        etName.setText(collaborator.name)
-        etSurname.setText(collaborator.surname)
+        til_name.setText(collaborator.name)
+        til_surname.setText(collaborator.surname)
 
         setupCollaboratorPhoto()
 
@@ -76,8 +74,8 @@ class EditCollaboratorFragment : BaseFragment(), OnCompanyItemPressedListener {
 
 
         btnSave.setOnClickListener {
-            val name = etName.text.toString()
-            val surname = etSurname.text.toString()
+            val name = til_name.getText()
+            val surname = til_surname.text.toString()
 
             if (TextUtils.isEmpty(name)) {
                 showSnackbar(getString(R.string.empty_name))

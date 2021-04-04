@@ -1,4 +1,4 @@
-package com.example.dmytroberezhnyi_vdatatesttask.fragment
+package com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.fragent.collaborator
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,13 +8,13 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.dmytroberezhnyi_vdatatesttask.R
-import com.example.dmytroberezhnyi_vdatatesttask.adapters.CollaboratorRecyclerAdapter
-import com.example.dmytroberezhnyi_vdatatesttask.adapters.CollaboratorViewHolder.CollaboratorWidthSize
-import com.example.dmytroberezhnyi_vdatatesttask.adapters.CollaboratorViewHolder.OnCollaboratorItemClickedListener
 import com.example.dmytroberezhnyi_vdatatesttask.data.entity.Collaborator
-import com.example.dmytroberezhnyi_vdatatesttask.fragment.EditCollaboratorFragment.Companion.collaboratorKey
-import com.example.dmytroberezhnyi_vdatatesttask.ui.MainActivity.OnAddIconClickedListener
-import com.example.dmytroberezhnyi_vdatatesttask.viewmodels.CollaboratorViewModel
+import com.example.dmytroberezhnyi_vdatatesttask.presentation.base.architecture.BaseFragment
+import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.activity.MainActivity.OnAddIconClickedListener
+import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.adapter.CollaboratorRecyclerAdapter
+import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.adapter.CollaboratorViewHolder.CollaboratorWidthSize
+import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.adapter.CollaboratorViewHolder.OnCollaboratorItemClickedListener
+import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.fragent.edit_collaborator.EditCollaboratorFragment.Companion.collaboratorKey
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.collaborator_fragment.*
 

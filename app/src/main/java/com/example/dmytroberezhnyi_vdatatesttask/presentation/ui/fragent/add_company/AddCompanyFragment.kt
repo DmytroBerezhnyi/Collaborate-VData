@@ -1,4 +1,4 @@
-package com.example.dmytroberezhnyi_vdatatesttask.fragment
+package com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.fragent.add_company
 
 import android.app.Dialog
 import android.content.DialogInterface
@@ -9,7 +9,6 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import com.example.dmytroberezhnyi_vdatatesttask.R
 import com.example.dmytroberezhnyi_vdatatesttask.data.entity.Company
-import com.example.dmytroberezhnyi_vdatatesttask.viewmodels.AddCompanyViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

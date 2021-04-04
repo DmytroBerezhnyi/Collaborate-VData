@@ -1,4 +1,4 @@
-package com.example.dmytroberezhnyi_vdatatesttask.viewmodels
+package com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.fragent.company_details
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData

@@ -1,4 +1,4 @@
-package com.example.dmytroberezhnyi_vdatatesttask.adapters
+package com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,10 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.example.dmytroberezhnyi_vdatatesttask.R
-import com.example.dmytroberezhnyi_vdatatesttask.adapters.CollaboratorViewHolder.CollaboratorWidthSize
-import com.example.dmytroberezhnyi_vdatatesttask.adapters.CompanyViewHolder.CompanySize
 import com.example.dmytroberezhnyi_vdatatesttask.data.entity.Collaborator
 import com.example.dmytroberezhnyi_vdatatesttask.data.entity.CollaboratorWithCompanies
+import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.adapter.CollaboratorViewHolder.CollaboratorWidthSize
+import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.adapter.CompanyViewHolder.CompanySize
 import kotlinx.android.synthetic.main.collaborator_item.view.*
 import kotlinx.android.synthetic.main.company_fragment.view.rvCompanies
 import java.util.*

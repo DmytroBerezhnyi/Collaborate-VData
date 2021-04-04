@@ -1,4 +1,4 @@
-package com.example.dmytroberezhnyi_vdatatesttask.fragment
+package com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.fragent.company
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,12 +8,14 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.dmytroberezhnyi_vdatatesttask.R
-import com.example.dmytroberezhnyi_vdatatesttask.adapters.CompanyRecyclerAdapter
-import com.example.dmytroberezhnyi_vdatatesttask.adapters.CompanyViewHolder.CompanySize
-import com.example.dmytroberezhnyi_vdatatesttask.adapters.CompanyViewHolder.OnCompanyItemPressedListener
 import com.example.dmytroberezhnyi_vdatatesttask.data.entity.Company
-import com.example.dmytroberezhnyi_vdatatesttask.ui.MainActivity
-import com.example.dmytroberezhnyi_vdatatesttask.viewmodels.CompanyViewModel
+import com.example.dmytroberezhnyi_vdatatesttask.presentation.base.architecture.BaseFragment
+import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.activity.MainActivity
+import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.adapter.CompanyRecyclerAdapter
+import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.adapter.CompanyViewHolder.CompanySize
+import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.adapter.CompanyViewHolder.OnCompanyItemPressedListener
+import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.fragent.add_company.AddCompanyFragment
+import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.fragent.company_details.CompanyDetailsFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.company_fragment.*
 

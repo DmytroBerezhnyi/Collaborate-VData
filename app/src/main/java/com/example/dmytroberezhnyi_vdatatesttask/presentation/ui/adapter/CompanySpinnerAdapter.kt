@@ -1,4 +1,4 @@
-package com.example.dmytroberezhnyi_vdatatesttask.adapters
+package com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.adapter
 
 import android.content.Context
 import android.widget.ArrayAdapter

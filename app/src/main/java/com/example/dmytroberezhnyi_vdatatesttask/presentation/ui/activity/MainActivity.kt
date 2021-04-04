@@ -1,4 +1,4 @@
-package com.example.dmytroberezhnyi_vdatatesttask.ui
+package com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.activity
 
 import android.os.Bundle
 import android.view.MenuItem

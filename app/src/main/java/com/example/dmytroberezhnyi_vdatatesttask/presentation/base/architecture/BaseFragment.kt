@@ -1,10 +1,10 @@
-package com.example.dmytroberezhnyi_vdatatesttask.fragment
+package com.example.dmytroberezhnyi_vdatatesttask.presentation.base.architecture
 
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import com.example.dmytroberezhnyi_vdatatesttask.ui.MainActivity
+import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.activity.MainActivity
 import com.google.android.material.snackbar.Snackbar
 
 abstract class BaseFragment : Fragment() {

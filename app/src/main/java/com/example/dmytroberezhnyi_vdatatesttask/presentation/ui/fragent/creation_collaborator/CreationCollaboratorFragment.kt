@@ -1,4 +1,4 @@
-package com.example.dmytroberezhnyi_vdatatesttask.fragment
+package com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.fragent.creation_collaborator
 
 import android.os.Bundle
 import android.text.TextUtils
@@ -13,12 +13,12 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.dmytroberezhnyi_vdatatesttask.R
-import com.example.dmytroberezhnyi_vdatatesttask.adapters.CompanySpinnerAdapter
 import com.example.dmytroberezhnyi_vdatatesttask.data.entity.Collaborator
 import com.example.dmytroberezhnyi_vdatatesttask.data.entity.Company
-import com.example.dmytroberezhnyi_vdatatesttask.fragment.PictureGalleryFragment.Companion.requestKey
-import com.example.dmytroberezhnyi_vdatatesttask.fragment.PictureGalleryFragment.Companion.urlKey
-import com.example.dmytroberezhnyi_vdatatesttask.viewmodels.CreationCollaboratorViewModel
+import com.example.dmytroberezhnyi_vdatatesttask.presentation.base.architecture.BaseFragment
+import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.adapter.CompanySpinnerAdapter
+import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.fragent.picture_gallery.PictureGalleryFragment.Companion.requestKey
+import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.fragent.picture_gallery.PictureGalleryFragment.Companion.urlKey
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.creation_collaborator_fragment.*
 
@@ -64,8 +64,8 @@ class CreationCollaboratorFragment : BaseFragment() {
         tvWithSpinnerBehavior.setAdapter(adapter)
 
         btnSave.setOnClickListener {
-            val name = etName.text.toString()
-            val surname = etSurname.text.toString()
+            val name = til_name.text.toString()
+            val surname = til_surname.text.toString()
 
             if (isFieldsFilled(name, surname)) {
                 val collaborator = Collaborator(null, name, surname, pictureUrl!!)

@@ -1,4 +1,4 @@
-package com.example.dmytroberezhnyi_vdatatesttask.adapters
+package com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +8,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.dmytroberezhnyi_vdatatesttask.R
-import com.example.dmytroberezhnyi_vdatatesttask.adapters.PictureViewHolder.OnPictureChosenListener
 import com.example.dmytroberezhnyi_vdatatesttask.data.pojo.Item
+import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.adapter.PictureViewHolder.OnPictureChosenListener
 import kotlinx.android.synthetic.main.picture_item.view.*
 import java.util.*
 

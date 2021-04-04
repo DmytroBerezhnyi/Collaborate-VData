@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/androidStudioProjects/DmytroBerezhnyi_VDataTestTask/app/src/main/res/layout/edit_collaborator_fragment.xml" value="0.36102564102564105" />
+        <entry key="..\:/androidStudioProjects/DmytroBerezhnyi_VDataTestTask/app/src/main/res/layout/picture_gallery_fragment.xml" value="0.52125" />
+        <entry key="..\:/androidStudioProjects/DmytroBerezhnyi_VDataTestTask/app/src/main/res/layout/picture_item.xml" value="0.3074074074074074" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

@@ -1,4 +1,4 @@
-package com.example.dmytroberezhnyi_vdatatesttask.fragment
+package com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.fragent.picture_gallery
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,10 +9,10 @@ import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.dmytroberezhnyi_vdatatesttask.R
-import com.example.dmytroberezhnyi_vdatatesttask.adapters.PictureRecyclerAdapter
-import com.example.dmytroberezhnyi_vdatatesttask.adapters.PictureViewHolder
 import com.example.dmytroberezhnyi_vdatatesttask.data.pojo.Item
-import com.example.dmytroberezhnyi_vdatatesttask.viewmodels.PictureGalleryViewModel
+import com.example.dmytroberezhnyi_vdatatesttask.presentation.base.architecture.BaseFragment
+import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.adapter.PictureRecyclerAdapter
+import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.adapter.PictureViewHolder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.picture_gallery_fragment.*
 

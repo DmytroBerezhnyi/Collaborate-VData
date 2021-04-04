@@ -1,4 +1,4 @@
-package com.example.dmytroberezhnyi_vdatatesttask.adapters
+package com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.adapter
 
 import android.util.TypedValue
 import android.view.LayoutInflater
@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dmytroberezhnyi_vdatatesttask.R
-import com.example.dmytroberezhnyi_vdatatesttask.adapters.CompanyViewHolder.CompanySize
-import com.example.dmytroberezhnyi_vdatatesttask.adapters.CompanyViewHolder.OnCompanyItemPressedListener
 import com.example.dmytroberezhnyi_vdatatesttask.data.entity.Company
+import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.adapter.CompanyViewHolder.CompanySize
+import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.adapter.CompanyViewHolder.OnCompanyItemPressedListener
 import kotlinx.android.synthetic.main.company_item.view.*
 import java.util.*
 
