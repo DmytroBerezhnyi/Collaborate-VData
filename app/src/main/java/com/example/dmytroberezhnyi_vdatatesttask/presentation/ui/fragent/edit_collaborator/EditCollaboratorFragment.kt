@@ -75,7 +75,7 @@ class EditCollaboratorFragment : BaseFragment(), OnCompanyItemPressedListener {
 
         btnSave.setOnClickListener {
             val name = til_name.getText()
-            val surname = til_surname.text.toString()
+            val surname = til_surname.getText()
 
             if (TextUtils.isEmpty(name)) {
                 showSnackbar(getString(R.string.empty_name))

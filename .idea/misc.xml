@@ -3,6 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/androidStudioProjects/DmytroBerezhnyi_VDataTestTask/app/src/main/res/layout/activity_main.xml" value="0.35260416666666666" />
+        <entry key="..\:/androidStudioProjects/DmytroBerezhnyi_VDataTestTask/app/src/main/res/layout/collaborator_fragment.xml" value="0.35260416666666666" />
+        <entry key="..\:/androidStudioProjects/DmytroBerezhnyi_VDataTestTask/app/src/main/res/layout/collaborator_item.xml" value="0.35260416666666666" />
+        <entry key="..\:/androidStudioProjects/DmytroBerezhnyi_VDataTestTask/app/src/main/res/layout/company_detalils_fragment.xml" value="0.36666666666666664" />
+        <entry key="..\:/androidStudioProjects/DmytroBerezhnyi_VDataTestTask/app/src/main/res/layout/company_fragment.xml" value="0.36666666666666664" />
+        <entry key="..\:/androidStudioProjects/DmytroBerezhnyi_VDataTestTask/app/src/main/res/layout/company_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/androidStudioProjects/DmytroBerezhnyi_VDataTestTask/app/src/main/res/layout/company_title_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/androidStudioProjects/DmytroBerezhnyi_VDataTestTask/app/src/main/res/layout/creation_collaborator_fragment.xml" value="0.36666666666666664" />
         <entry key="..\:/androidStudioProjects/DmytroBerezhnyi_VDataTestTask/app/src/main/res/layout/edit_collaborator_fragment.xml" value="0.36102564102564105" />
         <entry key="..\:/androidStudioProjects/DmytroBerezhnyi_VDataTestTask/app/src/main/res/layout/picture_gallery_fragment.xml" value="0.52125" />
         <entry key="..\:/androidStudioProjects/DmytroBerezhnyi_VDataTestTask/app/src/main/res/layout/picture_item.xml" value="0.3074074074074074" />

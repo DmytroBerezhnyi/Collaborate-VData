@@ -16,6 +16,7 @@ import com.example.dmytroberezhnyi_vdatatesttask.R
 import com.example.dmytroberezhnyi_vdatatesttask.data.entity.Collaborator
 import com.example.dmytroberezhnyi_vdatatesttask.data.entity.Company
 import com.example.dmytroberezhnyi_vdatatesttask.presentation.base.architecture.BaseFragment
+import com.example.dmytroberezhnyi_vdatatesttask.presentation.base.extension.getText
 import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.adapter.CompanySpinnerAdapter
 import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.fragent.picture_gallery.PictureGalleryFragment.Companion.requestKey
 import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.fragent.picture_gallery.PictureGalleryFragment.Companion.urlKey
@@ -64,8 +65,8 @@ class CreationCollaboratorFragment : BaseFragment() {
         tvWithSpinnerBehavior.setAdapter(adapter)
 
         btnSave.setOnClickListener {
-            val name = til_name.text.toString()
-            val surname = til_surname.text.toString()
+            val name = til_name.getText()
+            val surname = til_surname.getText()
 
             if (isFieldsFilled(name, surname)) {
                 val collaborator = Collaborator(null, name, surname, pictureUrl!!)
