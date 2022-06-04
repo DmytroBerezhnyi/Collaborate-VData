@@ -32,9 +32,6 @@
         android:label="@string/new_collaborator"
         tools:layout="@layout/creation_collaborator_fragment">
         <action
-            android:id="@+id/action_creationCollaboratorFragment_to_collaboratorFragment"
-            app:destination="@id/collaboratorFragment" />
-        <action
             android:id="@+id/action_creationCollaboratorFragment_to_pictureGalleryFragment"
             app:destination="@id/pictureGalleryFragment" />
     </fragment>
@@ -53,9 +50,6 @@
         android:name="com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.fragent.edit_collaborator.EditCollaboratorFragment"
         android:label="@string/edit_collaborator"
         tools:layout="@layout/edit_collaborator_fragment">
-        <action
-            android:id="@+id/action_editCollaboratorFragment_to_collaboratorFragment"
-            app:destination="@id/collaboratorFragment" />
         <action
             android:id="@+id/action_editCollaboratorFragment_to_pictureGalleryFragment"
             app:destination="@id/pictureGalleryFragment" />

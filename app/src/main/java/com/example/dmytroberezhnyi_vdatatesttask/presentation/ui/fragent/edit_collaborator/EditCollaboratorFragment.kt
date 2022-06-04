@@ -75,7 +75,7 @@ class EditCollaboratorFragment : BaseFragment<EditCollaboratorFragmentBinding>()
                 val updatedCollaborator =
                     Collaborator(collaborator.collaboratorId, name, surname, pictureUrl)
                 viewModel.updateCollaborator(updatedCollaborator)
-                findNavController().navigate(R.id.action_editCollaboratorFragment_to_collaboratorFragment)
+                findNavController().popBackStack()
             }
         }
     }

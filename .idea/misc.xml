@@ -17,6 +17,8 @@
         <entry key="app/src/main/res/layout/edit_collaborator_fragment.xml" value="0.28425925925925927" />
         <entry key="app/src/main/res/layout/picture_gallery_fragment.xml" value="0.3729166666666667" />
         <entry key="app/src/main/res/layout/picture_item.xml" value="0.3729166666666667" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.178" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.178" />
       </map>
     </option>
   </component>

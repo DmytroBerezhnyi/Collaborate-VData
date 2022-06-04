@@ -61,7 +61,7 @@ class CreationCollaboratorFragment : BaseFragment<CreationCollaboratorFragmentBi
                 company = adapter.getItem(viewModel.companyPosition.value!!)
 
                 viewModel.addCollaborator(collaborator, company!!)
-                findNavController().navigate(R.id.action_creationCollaboratorFragment_to_collaboratorFragment)
+                findNavController().popBackStack()
             }
         }
 
