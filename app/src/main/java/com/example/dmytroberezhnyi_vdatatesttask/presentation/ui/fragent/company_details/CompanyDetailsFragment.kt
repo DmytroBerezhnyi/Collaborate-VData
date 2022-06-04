@@ -15,10 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class CompanyDetailsFragment : BaseFragment<CompanyDetalilsFragmentBinding>() {
 
     companion object {
-
         const val companyKey = "companyKey"
-
-        fun newInstance() = CompanyDetailsFragment()
     }
 
     override val layoutId: Int = R.layout.company_detalils_fragment
@@ -32,7 +29,8 @@ class CompanyDetailsFragment : BaseFragment<CompanyDetalilsFragmentBinding>() {
 
     private fun setupRecyclers() {
         val company: Company = arguments?.getParcelable(companyKey)!!
-        val adapterWorkingCollab = CollaboratorRecyclerAdapter(CollaboratorRecyclerAdapter.CollaboratorWidthSize.WRAP_CONTENT)
+        val adapterWorkingCollab =
+            CollaboratorRecyclerAdapter(CollaboratorRecyclerAdapter.CollaboratorWidthSize.WRAP_CONTENT)
         val adapterNotWorkingCollab =
             CollaboratorRecyclerAdapter(CollaboratorRecyclerAdapter.CollaboratorWidthSize.WRAP_CONTENT)
 

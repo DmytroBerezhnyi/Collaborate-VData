@@ -29,8 +29,6 @@ class EditCollaboratorFragment : BaseFragment<EditCollaboratorFragmentBinding>()
     companion object {
 
         const val collaboratorKey = "collaboratorKey"
-
-        fun newInstance() = EditCollaboratorFragment()
     }
 
     override val layoutId: Int

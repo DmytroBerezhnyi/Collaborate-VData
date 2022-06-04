@@ -18,11 +18,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class CollaboratorFragment : BaseFragment<CollaboratorFragmentBinding>(), OnAddIconClickedListener,
     CollaboratorRecyclerAdapter.OnCollaboratorItemClickedListener {
 
-    companion object {
-
-        fun newInstance() = CollaboratorFragment()
-    }
-
     private val viewModel: CollaboratorViewModel by viewModels()
 
     override val layoutId: Int

@@ -21,10 +21,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class CompanyFragment : BaseFragment<CompanyFragmentBinding>(), MainActivity.OnAddIconClickedListener,
     CompanyRecyclerAdapter.OnCompanyItemPressedListener {
 
-    companion object {
-        fun newInstance() = CompanyFragment()
-    }
-
     override val layoutId: Int
         get() = R.layout.company_fragment
 

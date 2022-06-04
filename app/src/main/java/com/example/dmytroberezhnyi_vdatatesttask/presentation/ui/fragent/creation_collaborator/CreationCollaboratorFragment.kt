@@ -23,11 +23,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class CreationCollaboratorFragment : BaseFragment<CreationCollaboratorFragmentBinding>() {
 
-    companion object {
-
-        fun newInstance() = CreationCollaboratorFragment()
-    }
-
     override val layoutId: Int
         get() = R.layout.creation_collaborator_fragment
 
