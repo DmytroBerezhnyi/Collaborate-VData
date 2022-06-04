@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ivPicture"
-    android:layout_width="match_parent"
-    android:layout_height="140dp"
-    android:layout_margin="8dp"
-    android:clickable="true"
-    android:focusable="true"
-    android:contentDescription="@string/picture"
-    tools:src="@drawable/ic_empty_avatar" />
+    <ImageView
+        android:id="@+id/ivPicture"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_margin="8dp"
+        android:clickable="true"
+        android:contentDescription="@string/picture"
+        android:focusable="true"
+        tools:src="@drawable/ic_empty_avatar" />
+
+</layout>

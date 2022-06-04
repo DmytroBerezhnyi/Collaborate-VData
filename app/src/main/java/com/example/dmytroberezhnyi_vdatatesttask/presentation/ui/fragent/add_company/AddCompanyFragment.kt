@@ -27,18 +27,14 @@ class AddCompanyFragment : DialogFragment() {
             builder.setTitle(getString(R.string.add_company))
                 .setCancelable(true)
                 .setView(input)
-                .setPositiveButton("OK", object : DialogInterface.OnClickListener {
-                    override fun onClick(dialog: DialogInterface?, which: Int) {
-                        val companyName = input.text.toString()
-                        val company = Company(companyName = companyName)
-                        viewModel.addCompany(company)
-                    }
-                })
-                .setNegativeButton("Cancel", object : DialogInterface.OnClickListener {
-                    override fun onClick(dialog: DialogInterface?, which: Int) {
-                        dialog?.cancel()
-                    }
-                })
+                .setPositiveButton("OK"
+                ) { dialog, which ->
+                    val companyName = input.text.toString()
+                    val company = Company(companyName = companyName)
+                    viewModel.addCompany(company)
+                }
+                .setNegativeButton("Cancel"
+                ) { dialog, which -> dialog?.cancel() }
             builder.create()
         } ?: throw IllegalStateException("Activity cannot be null")
     }

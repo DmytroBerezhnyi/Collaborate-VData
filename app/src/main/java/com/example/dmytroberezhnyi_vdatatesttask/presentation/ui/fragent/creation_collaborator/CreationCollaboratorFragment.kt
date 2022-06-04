@@ -2,9 +2,7 @@ package com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.fragent.creati
 
 import android.os.Bundle
 import android.text.TextUtils
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.AdapterView
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
@@ -15,39 +13,35 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.dmytroberezhnyi_vdatatesttask.R
 import com.example.dmytroberezhnyi_vdatatesttask.data.entity.Collaborator
 import com.example.dmytroberezhnyi_vdatatesttask.data.entity.Company
+import com.example.dmytroberezhnyi_vdatatesttask.databinding.CreationCollaboratorFragmentBinding
 import com.example.dmytroberezhnyi_vdatatesttask.presentation.base.architecture.BaseFragment
 import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.adapter.CompanySpinnerAdapter
 import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.fragent.picture_gallery.PictureGalleryFragment.Companion.requestKey
 import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.fragent.picture_gallery.PictureGalleryFragment.Companion.urlKey
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.creation_collaborator_fragment.*
 
 @AndroidEntryPoint
-class CreationCollaboratorFragment : BaseFragment() {
+class CreationCollaboratorFragment : BaseFragment<CreationCollaboratorFragmentBinding>() {
 
     companion object {
 
         fun newInstance() = CreationCollaboratorFragment()
     }
 
+    override val layoutId: Int
+        get() = R.layout.creation_collaborator_fragment
+
     private val viewModel: CreationCollaboratorViewModel by viewModels()
 
     private var pictureUrl: String? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.creation_collaborator_fragment, container, false)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.companies.observe(viewLifecycleOwner, {
+        viewModel.companies.observe(viewLifecycleOwner) {
             it?.let {
                 setupViews(it)
             }
-        })
+        }
     }
 
     private fun setupViews(companies: List<Company>) {
@@ -55,17 +49,17 @@ class CreationCollaboratorFragment : BaseFragment() {
         val adapter =
             CompanySpinnerAdapter(requireContext(), R.layout.company_title_item, companies)
 
-        tvWithSpinnerBehavior.onItemClickListener =
+        binding.tvWithSpinnerBehavior.onItemClickListener =
             AdapterView.OnItemClickListener { adapterView, _, position, _ ->
                 viewModel.saveCompanyPosition(position)
                 company = adapterView?.getItemAtPosition(position) as Company
             }
 
-        tvWithSpinnerBehavior.setAdapter(adapter)
+        binding.tvWithSpinnerBehavior.setAdapter(adapter)
 
-        btnSave.setOnClickListener {
-            val name = til_name.text.toString()
-            val surname = til_surname.text.toString()
+        binding.btnSave.setOnClickListener {
+            val name = binding.tilName.text.toString()
+            val surname = binding.tilSurname.text.toString()
 
             if (isFieldsFilled(name, surname)) {
                 val collaborator = Collaborator(null, name, surname, pictureUrl!!)
@@ -76,7 +70,7 @@ class CreationCollaboratorFragment : BaseFragment() {
             }
         }
 
-        ivCollaboratorPhoto.setOnClickListener {
+        binding.ivCollaboratorPhoto.setOnClickListener {
             findNavController().navigate(R.id.action_creationCollaboratorFragment_to_pictureGalleryFragment)
             setFragmentResultListener(requestKey) { _, bundle ->
                 this.pictureUrl = bundle.getString(urlKey)
@@ -84,7 +78,7 @@ class CreationCollaboratorFragment : BaseFragment() {
                 Glide.with(requireView())
                     .load(pictureUrl)
                     .transform(CenterCrop(), RoundedCorners(15))
-                    .into(ivCollaboratorPhoto)
+                    .into(binding.ivCollaboratorPhoto)
             }
         }
     }

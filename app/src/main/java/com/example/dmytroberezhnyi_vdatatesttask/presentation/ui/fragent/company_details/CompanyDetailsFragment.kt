@@ -1,21 +1,18 @@
 package com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.fragent.company_details
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.dmytroberezhnyi_vdatatesttask.R
 import com.example.dmytroberezhnyi_vdatatesttask.data.entity.Company
 import com.example.dmytroberezhnyi_vdatatesttask.data.entity.toCollaboratorsWithCompany
+import com.example.dmytroberezhnyi_vdatatesttask.databinding.CompanyDetalilsFragmentBinding
 import com.example.dmytroberezhnyi_vdatatesttask.presentation.base.architecture.BaseFragment
 import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.adapter.CollaboratorRecyclerAdapter
-import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.adapter.CollaboratorViewHolder.CollaboratorWidthSize
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.company_detalils_fragment.*
 
 @AndroidEntryPoint
-class CompanyDetailsFragment : BaseFragment() {
+class CompanyDetailsFragment : BaseFragment<CompanyDetalilsFragmentBinding>() {
 
     companion object {
 
@@ -24,14 +21,9 @@ class CompanyDetailsFragment : BaseFragment() {
         fun newInstance() = CompanyDetailsFragment()
     }
 
-    private val viewModel: CompanyDetailsViewModel by viewModels()
+    override val layoutId: Int = R.layout.company_detalils_fragment
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.company_detalils_fragment, container, false)
-    }
+    private val viewModel: CompanyDetailsViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -40,38 +32,38 @@ class CompanyDetailsFragment : BaseFragment() {
 
     private fun setupRecyclers() {
         val company: Company = arguments?.getParcelable(companyKey)!!
-        val adapterWorkingCollab = CollaboratorRecyclerAdapter(CollaboratorWidthSize.WRAP_CONTENT)
+        val adapterWorkingCollab = CollaboratorRecyclerAdapter(CollaboratorRecyclerAdapter.CollaboratorWidthSize.WRAP_CONTENT)
         val adapterNotWorkingCollab =
-            CollaboratorRecyclerAdapter(CollaboratorWidthSize.WRAP_CONTENT)
+            CollaboratorRecyclerAdapter(CollaboratorRecyclerAdapter.CollaboratorWidthSize.WRAP_CONTENT)
 
-        tvCompanyTitle.text = company.companyName
+        binding.tvCompanyTitle.text = company.companyName
 
         viewModel.getCompanyWithCollaborators(company.companyId!!, true)
-            .observe(viewLifecycleOwner, {
+            .observe(viewLifecycleOwner) {
                 it?.let {
-                    tvCollaboratorWorkingCount.text = it.size.toString()
+                    binding.tvCollaboratorWorkingCount.text = it.size.toString()
 
-                    if (it.isEmpty()) rvCollaboratorsWorking.visibility = View.GONE
-                    rvCollaboratorsWorking.adapter = adapterWorkingCollab
+                    if (it.isEmpty()) binding.rvCollaboratorsWorking.visibility = View.GONE
+                    binding.rvCollaboratorsWorking.adapter = adapterWorkingCollab
                     adapterWorkingCollab.setItems(toCollaboratorsWithCompany(it, company))
                 }
-            })
+            }
 
         viewModel.getCompanyWithCollaborators(company.companyId!!, false)
-            .observe(viewLifecycleOwner, {
+            .observe(viewLifecycleOwner) {
                 it?.let {
-                    tvCollaboratorNotWorkingAnymoreCount.text = it.size.toString()
+                    binding.tvCollaboratorNotWorkingAnymoreCount.text = it.size.toString()
 
-                    if (it.isEmpty()) rvCollaboratorsNotWorking.visibility = View.GONE
-                    rvCollaboratorsNotWorking.adapter = adapterNotWorkingCollab
+                    if (it.isEmpty()) binding.rvCollaboratorsNotWorking.visibility = View.GONE
+                    binding.rvCollaboratorsNotWorking.adapter = adapterNotWorkingCollab
                     adapterNotWorkingCollab.setItems(toCollaboratorsWithCompany(it, company))
                 }
-            })
-
-        viewModel.getCollaboratorsTotalCount(company.companyId!!).observe(viewLifecycleOwner, {
-            it?.let {
-                tvCollaboratorTotalCount.text = it.toString()
             }
-        })
+
+        viewModel.getCollaboratorsTotalCount(company.companyId!!).observe(viewLifecycleOwner) {
+            it?.let {
+                binding.tvCollaboratorTotalCount.text = it.toString()
+            }
+        }
     }
 }

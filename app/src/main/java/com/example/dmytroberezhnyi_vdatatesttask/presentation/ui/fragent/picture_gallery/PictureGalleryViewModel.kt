@@ -1,12 +1,14 @@
 package com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.fragent.picture_gallery
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.example.dmytroberezhnyi_vdatatesttask.data.pojo.Item
 import com.example.dmytroberezhnyi_vdatatesttask.data.repository.PictureRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class PictureGalleryViewModel @ViewModelInject constructor(
+@HiltViewModel
+class PictureGalleryViewModel @Inject constructor(
     pictureRepository: PictureRepository
 ) : ViewModel() {
 

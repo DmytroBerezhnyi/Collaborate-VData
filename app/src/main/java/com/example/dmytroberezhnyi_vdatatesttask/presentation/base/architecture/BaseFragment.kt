@@ -1,19 +1,46 @@
 package com.example.dmytroberezhnyi_vdatatesttask.presentation.base.architecture
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AlertDialog
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.activity.MainActivity
 import com.google.android.material.snackbar.Snackbar
 
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment<Binding : ViewDataBinding> : Fragment() {
 
     private val TAG = "BaseFragment"
+
+    @get:LayoutRes
+    abstract val layoutId: Int
+
+    protected lateinit var binding: Binding
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         requireMainActivity().hideToolbarPlusIcon()
+        binding.initView()
+    }
+
+    protected open fun Binding.initView() {}
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding.unbind()
     }
 
     protected fun showSnackbar(message: String) {

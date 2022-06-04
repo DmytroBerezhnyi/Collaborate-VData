@@ -2,20 +2,16 @@ package com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.adapter
 
 import android.util.TypedValue
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.dmytroberezhnyi_vdatatesttask.R
 import com.example.dmytroberezhnyi_vdatatesttask.data.entity.Company
-import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.adapter.CompanyViewHolder.CompanySize
-import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.adapter.CompanyViewHolder.OnCompanyItemPressedListener
-import kotlinx.android.synthetic.main.company_item.view.*
+import com.example.dmytroberezhnyi_vdatatesttask.databinding.CompanyItemBinding
 import java.util.*
 
 class CompanyRecyclerAdapter(
     private val companySize: CompanySize,
     private val listener: OnCompanyItemPressedListener? = null
-) : RecyclerView.Adapter<CompanyViewHolder>() {
+) : RecyclerView.Adapter<CompanyRecyclerAdapter.CompanyViewHolder>() {
 
     private val items = ArrayList<Company>()
 
@@ -26,8 +22,8 @@ class CompanyRecyclerAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CompanyViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.company_item, parent, false)
-        return CompanyViewHolder(view, companySize, listener)
+        val binding = CompanyItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return CompanyViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: CompanyViewHolder, position: Int) {
@@ -36,46 +32,6 @@ class CompanyRecyclerAdapter(
 
     override fun getItemCount(): Int {
         return items.size
-    }
-}
-
-class CompanyViewHolder(
-    itemView: View, private val companySize: CompanySize,
-    listener: OnCompanyItemPressedListener?
-) : RecyclerView.ViewHolder(itemView) {
-
-    lateinit var company: Company
-
-    init {
-        listener?.let {
-            itemView.setOnLongClickListener {
-                listener.onCompanyItemLongPressed(company)
-                true
-            }
-
-            itemView.setOnClickListener {
-                listener.onCompanyItemClicked(company)
-            }
-        }
-    }
-
-    fun bind(company: Company) {
-        this.company = company
-        itemView.tvCompanyName.text = company.companyName
-
-        var cardViewHeight = 0
-        if (companySize == CompanySize.SMALL) {
-            cardViewHeight = 25
-        } else if (companySize == CompanySize.NORMAL) {
-            cardViewHeight = 50
-        }
-
-        itemView.cvCompany.layoutParams.height =
-            TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP,
-                cardViewHeight.toFloat(),
-                itemView.context.resources.displayMetrics
-            ).toInt()
     }
 
     interface OnCompanyItemPressedListener {
@@ -87,5 +43,35 @@ class CompanyViewHolder(
     enum class CompanySize {
         SMALL,
         NORMAL
+    }
+
+    inner class CompanyViewHolder(val binding: CompanyItemBinding) : RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(company: Company) {
+            binding.root.setOnLongClickListener {
+                listener?.onCompanyItemLongPressed(company)
+                true
+            }
+
+            binding.root.setOnClickListener {
+                listener?.onCompanyItemClicked(company)
+            }
+
+            binding.tvCompanyName.text = company.companyName
+
+            var cardViewHeight = 0
+            if (companySize == CompanySize.SMALL) {
+                cardViewHeight = 25
+            } else if (companySize == CompanySize.NORMAL) {
+                cardViewHeight = 50
+            }
+
+            binding.cvCompany.layoutParams.height =
+                TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP,
+                    cardViewHeight.toFloat(),
+                    itemView.context.resources.displayMetrics
+                ).toInt()
+        }
     }
 }

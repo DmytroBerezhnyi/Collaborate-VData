@@ -9,31 +9,34 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.example.dmytroberezhnyi_vdatatesttask.R
+import com.example.dmytroberezhnyi_vdatatesttask.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_main.*
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
 
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         setUpNavigation()
         setUpToolbar()
     }
 
     fun showToolbarPlusIcon() {
-        ivAdd.visibility = View.VISIBLE
+        binding.ivAdd.visibility = View.VISIBLE
     }
 
     fun hideToolbarPlusIcon() {
-        ivAdd.visibility = View.INVISIBLE
+        binding.ivAdd.visibility = View.INVISIBLE
     }
 
     fun setOnIconClickedListener(listener: OnAddIconClickedListener) {
-        ivAdd.setOnClickListener {
+        binding.ivAdd.setOnClickListener {
             listener.onAddButtonClicked()
         }
     }
@@ -50,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
-        NavigationUI.setupWithNavController(bottom_navigation, navController)
+        NavigationUI.setupWithNavController(binding.bottomNavigation, navController)
         return navController
     }
 
@@ -58,7 +61,7 @@ class MainActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration
             .Builder(R.id.companyFragment, R.id.collaboratorFragment)
             .build()
-        setSupportActionBar(toolbar_main)
+        setSupportActionBar(binding.toolbarMain)
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
     }
 

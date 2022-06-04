@@ -1,12 +1,14 @@
 package com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.fragent.company
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.example.dmytroberezhnyi_vdatatesttask.data.entity.Company
 import com.example.dmytroberezhnyi_vdatatesttask.data.repository.CompanyRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class CompanyViewModel @ViewModelInject constructor(
+@HiltViewModel
+class CompanyViewModel @Inject constructor(
     val repository: CompanyRepository
 ) : ViewModel() {
 

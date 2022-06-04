@@ -9,33 +9,26 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.dmytroberezhnyi_vdatatesttask.R
 import com.example.dmytroberezhnyi_vdatatesttask.data.entity.Company
+import com.example.dmytroberezhnyi_vdatatesttask.databinding.CompanyFragmentBinding
 import com.example.dmytroberezhnyi_vdatatesttask.presentation.base.architecture.BaseFragment
 import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.activity.MainActivity
 import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.adapter.CompanyRecyclerAdapter
-import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.adapter.CompanyViewHolder.CompanySize
-import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.adapter.CompanyViewHolder.OnCompanyItemPressedListener
 import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.fragent.add_company.AddCompanyFragment
 import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.fragent.company_details.CompanyDetailsFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.company_fragment.*
-
 
 @AndroidEntryPoint
-class CompanyFragment : BaseFragment(), MainActivity.OnAddIconClickedListener,
-    OnCompanyItemPressedListener {
+class CompanyFragment : BaseFragment<CompanyFragmentBinding>(), MainActivity.OnAddIconClickedListener,
+    CompanyRecyclerAdapter.OnCompanyItemPressedListener {
 
     companion object {
         fun newInstance() = CompanyFragment()
     }
 
-    private val viewModel: CompanyViewModel by viewModels()
+    override val layoutId: Int
+        get() = R.layout.company_fragment
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.company_fragment, container, false)
-    }
+    private val viewModel: CompanyViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -61,12 +54,12 @@ class CompanyFragment : BaseFragment(), MainActivity.OnAddIconClickedListener,
     }
 
     private fun setUpRecycler() {
-        val adapter = CompanyRecyclerAdapter(CompanySize.NORMAL, this)
-        rvCompanies.adapter = adapter
-        viewModel.companies.observe(viewLifecycleOwner, {
+        val adapter = CompanyRecyclerAdapter(CompanyRecyclerAdapter.CompanySize.NORMAL, this)
+        binding.rvCompanies.adapter = adapter
+        viewModel.companies.observe(viewLifecycleOwner) {
             it?.let {
                 adapter.setItems(it)
             }
-        })
+        }
     }
 }

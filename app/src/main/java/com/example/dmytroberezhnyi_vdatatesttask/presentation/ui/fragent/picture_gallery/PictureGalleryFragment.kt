@@ -10,15 +10,14 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.dmytroberezhnyi_vdatatesttask.R
 import com.example.dmytroberezhnyi_vdatatesttask.data.pojo.Item
+import com.example.dmytroberezhnyi_vdatatesttask.databinding.PictureGalleryFragmentBinding
 import com.example.dmytroberezhnyi_vdatatesttask.presentation.base.architecture.BaseFragment
 import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.adapter.PictureRecyclerAdapter
-import com.example.dmytroberezhnyi_vdatatesttask.presentation.ui.adapter.PictureViewHolder
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.picture_gallery_fragment.*
 
 @AndroidEntryPoint
-class PictureGalleryFragment : BaseFragment(),
-    PictureViewHolder.OnPictureChosenListener {
+class PictureGalleryFragment : BaseFragment<PictureGalleryFragmentBinding>(),
+    PictureRecyclerAdapter.OnPictureChosenListener {
 
     companion object {
 
@@ -29,13 +28,8 @@ class PictureGalleryFragment : BaseFragment(),
 
     private val viewModel: PictureGalleryViewModel by viewModels()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.picture_gallery_fragment, container, false)
-    }
+    override val layoutId: Int
+        get() = R.layout.picture_gallery_fragment
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -44,12 +38,12 @@ class PictureGalleryFragment : BaseFragment(),
 
     private fun setupRecycler() {
         val adapter = PictureRecyclerAdapter(this)
-        rvPictures.adapter = adapter
-        viewModel.pictures.observe(viewLifecycleOwner, {
+        binding.rvPictures.adapter = adapter
+        viewModel.pictures.observe(viewLifecycleOwner) {
             it?.let {
                 adapter.setItems(it)
             }
-        })
+        }
     }
 
     override fun onPictureChosen(item: Item) {
